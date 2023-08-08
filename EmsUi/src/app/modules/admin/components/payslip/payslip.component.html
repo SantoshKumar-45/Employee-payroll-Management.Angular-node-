@@ -1,0 +1,218 @@
+<!-- first container show list -->
+<div class="container mt-4 mb-4 listcontainer">
+    <div class="table_header border-bottom">
+        <h4 class="header">Payslip</h4>
+        <!-- export link/button -->
+        <button mat-raised-button color="primary" class="add-button" *ngIf="payslipBackBtn == true" (click)="backbtn()">
+            <i class="material-icons" style="border-right: 0;">arrow_back</i>
+            <span>Back</span>
+        </button>
+    </div>
+
+
+
+    <!-- date list -->
+    <div class="row mt-2" *ngIf="payslipList == true">
+        <!-- <button mdbBtn color="primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Sending...
+          </button> -->
+        <div class="col-2">
+            <ul class="attendance-list">
+                <ng-container *ngFor="let t of Title;">
+                    <li class="list" (click)="empListForPayslip(t.title)">
+                        <span>{{t.title}}</span>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- payslip table  employee -->
+    <div class="container mt-5" *ngIf="payslipTable == true">
+
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th class="tabl_header">#</th>
+                    <th class="tabl_header">Name</th>
+                    <th class="tabl_header">Designation</th>
+                    <th class="tabl_header">Payslip</th>
+                    <th class="tabl_header">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of employeeList ,let i=index">
+                    <td>
+                        {{i+1}}
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <!-- <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
+                        class="rounded-circle" /> -->
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">{{emp.first_name}}&nbsp;{{emp.last_name}}</p>
+                                <p class="text-muted mb-0">{{emp.email}} </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">{{emp.designation}}</p>
+                    </td>
+                    <!-- <td>
+                        <button class="btn btn-light" (click)="sendEmailPayslip(emp.email,emp.title,emp.id)">
+                            Send
+                            <span class="icon">
+                                <mat-icon class="small-icon" *ngIf="emp.emailStatus">check_circle</mat-icon>
+                            </span>
+                        </button>
+                    </td> -->
+                    <td>
+                        <button class="btn btn-light" (click)="sendEmailPayslip(emp.email, emp.title, emp.id)">
+                            <span *ngIf="!isLoading">Send</span>
+                            <span *ngIf="isLoading " >
+                                <mat-spinner diameter="14"></mat-spinner>...
+                            </span>
+                            <span class="icon" *ngIf="emp.emailStatus">
+                                <mat-icon class="small-icon">check_circle</mat-icon>
+                            </span>
+                        </button>
+                    </td>
+                    
+
+                    <td>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded"
+                            (click)="ShowPayslip(emp.id,emp.title)">
+                            payslip
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- payslip container -->
+    <div class="container mt-5 mb-5" *ngIf="employeePayslipContainer == true">
+        <div class="row" *ngFor="let empl of employeeData">
+
+            <div class="col-md-12">
+                <div class="text-center lh-1 mb-2">
+                    <h1 class="fw-bold">Payslip</h1> <span class="fw-normal">Payment slip for the month of
+                        {{empl.title}}</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Employee Name</span> <small
+                                        class="ms-3">{{empl.first_name}}&nbsp;{{empl.last_name}}</small>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Date of Joining</span> <small
+                                        class="ms-3"></small>{{empl.doj | date}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Designation</span> <small
+                                        class="ms-3">{{empl.designation}}</small> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Working Days</span> <small
+                                        class="ms-3">{{empl.working_days}}</small> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="mt-4 table table-bordered">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col">Earnings</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Deductions</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Basic salary</th>
+                                <td>{{empl.basic_salary | currency:'INR' }}</td>
+                                <td>TDS</td>
+                                <td>{{empl.tds | currency:'INR' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">DA</th>
+                                <td>{{empl.da | currency:'INR' }}</td>
+                                <td>PF</td>
+                                <td>{{empl.pf | currency:'INR' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">TA</th>
+                                <td>{{empl.ta | currency:'INR' }} </td>
+                                <td></td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">HRA</th>
+                                <td>{{empl.hra | currency:'INR' }} </td>
+                                <td></td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0.00 </td>
+                                <td></td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0.00 </td>
+                                <td></td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr class="border-top">
+                                <th scope="row">Total Earnings</th>
+                                <td>{{empl.gross_salary | currency:'INR' }}</td>
+                                <td>Total Deductions</td>
+                                <td>{{empl.total_deduction | currency:'INR' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>00 </td>
+                                <td></td>
+                                <td>0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"> <br> <span class="fw-bold">Net Pay : {{empl.net_salary | currency:'INR'
+                            }}</span> </div>
+                    <div class="border col-md-8">
+                        <div class="d-flex flex-column"> <span>In Words</span> <span> {{empl.net_salary |numberTowords
+                                }}</span> </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <div class="d-flex flex-column mt-2"> <span class="fw-bolder">jai Infoway pvt ltd</span> <span
+                            class="mt-1">Authorised
+                            Signatory</span> </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

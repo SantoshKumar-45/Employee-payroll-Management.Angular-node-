@@ -1,0 +1,594 @@
+<!-- new -->
+<div class="container rounded bg-white mt-3 mb-3  content-box">
+
+  <!-- model head -->
+  <div class="modal-header border-bottom">
+    <h4 class="mod-t">Employee Edit</h4>
+    <div class="example-button-row">
+      <button class="btn btn-default" [routerLink]="['../../employee']"> Back </button>
+    </div>
+  </div>
+  <!-- model head -->
+
+  <!-- model body -->
+  <div class="modal-body">
+
+    <!-- profile-head -->
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <form [formGroup]="employee">
+        <mat-tab>
+          <ng-template mat-tab-label> Personal </ng-template>
+          <!-- personal Details -->
+          <div class="container rounded bg-white mt-3 mb-0">
+            <div class="row mt-0">
+
+              <!-- profile pic -->
+              <div class="col-md-2 border-end">
+                <div class="d-flex flex-column align-items-center text-center p-0 py-0">
+                  <img class="rounded-circle mt-5 img-fluid" width="150px" alt="profile pic" [src]="imageSrc"
+                    *ngIf="imageSrc" style="height: 150px;" />
+                  <span class="font-weight-bold">{{this.employee.value.first_name}}
+                    {{this.employee.value.last_name}}</span>
+                  <span class="text-black-50">{{this.employee.value.email}}</span>
+                </div>
+
+                <div class="row mt-3 mb-2">
+                  <div class="col-md-12">
+                    <label class="labels">Upload Photo</label>                   
+                    <span class="text-danger">{{pictureValidation}}</span>
+                    <input type="file" class="" (change)="onFileChanged($event)" accept="image/*" />
+                  </div>
+                </div>
+
+                <div class="row mt-0 mb-3">
+                  <div class="col-md-12">
+                    <button class="btn btn-default" (click)="uploadPic()"> Upload </button>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center text-center">
+                  <!-- Checked switch -->
+                  <div class="form-check form-switch">
+                    <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                      [checked]="checked" (change)="onChecked($event)" />
+
+                    <label class="form-check-label" for="flexSwitchCheckChecked" [style]="style">{{checkBox}}</label>
+                  </div>
+                </div>
+
+              </div>
+              <!-- profile pic -->
+
+              <!-- personal setting -->
+              <div class="col-md-5 border-end">
+                <div class="p-0 py-0">
+                  <div class="d-flex justify-content-between align-items-center mb-0">
+                    <h4 class="text-right m-0 p-0">Personal Settings</h4>
+                  </div>
+                  <hr>
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">First Name</label>
+                      <span
+                        *ngIf="employee.controls['first_name'].invalid && (employee.controls['first_name'].dirty || employee.controls['first_name'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['first_name'].errors?.['required']">
+                          First_name is required
+                        </span>
+                        <span *ngIf="employee.controls['first_name'].errors?.['pattern']">
+                          Only letter are allowed.
+                        </span>
+                        <span *ngIf="employee.controls['first_name'].errors?.['maxlength']">
+                          Only 15 letter are allowed.
+                        </span>
+                      </span>
+                      <input type="text" class="form-control" placeholder="First Name" formControlName="first_name" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="labels">Last Name</label>
+                      <span
+                        *ngIf="employee.controls['last_name'].invalid && (employee.controls['last_name'].dirty || employee.controls['last_name'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['last_name'].errors?.['required']">
+                          Last_name is required
+                        </span>
+                        <span *ngIf="employee.controls['last_name'].errors?.['pattern']">
+                          Only letter are allowed.
+                        </span>
+                        <span *ngIf="employee.controls['last_name'].errors?.['maxlength']">
+                          Only 15 letter are allowed.
+                        </span>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Last Name" formControlName="last_name" />
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Date Of Birth</label>
+                      <span
+                        *ngIf="employee.controls['dob'].invalid && (employee.controls['dob'].dirty || employee.controls['dob'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['dob'].errors?.['required']">
+                          Birth Date is required
+                        </span>
+                      </span>
+                      <input type="date" class="form-control" placeholder="Date Of Birth" formControlName="dob" />
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <label class="labels">Gender</label><br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                          value="Male" formControlName="gender">
+                         <label class="form-check-label" for="inlineRadio1">Male</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                          value="Female" formControlName="gender" >
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                          value="Prefer not to say" formControlName="gender">
+                        <label class="form-check-label" for="inlineRadio3">Prefer not to say</label>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <label class="labels">Email ID</label>
+                      <span
+                        *ngIf="employee.controls['email'].invalid && (employee.controls['email'].dirty || employee.controls['email'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['email'].errors?.['required']">
+                          Email is required.
+                        </span>
+                        <span
+                          *ngIf="employee.controls['email'].touched && employee.controls['email'].errors?.['email']">
+                          Valid email is required
+                        </span>
+                      </span>
+                      <span *ngIf="ExistsEmail" class="text-danger">
+                        {{ExistsEmail}} is already exists
+                      </span>
+                      <input type="text" class="form-control" placeholder="Enter Email Id" formControlName="email" />
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <label class="labels">Mobile Number</label>
+                      <span
+                        *ngIf="employee.controls['contact_no'].invalid && (employee.controls['contact_no'].dirty || employee.controls['contact_no'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['contact_no'].errors?.['required']">
+                          Contact_no is required
+                        </span>
+
+                        <ng-container
+                          *ngIf="employee.controls['contact_no'].errors?.['pattern']; then pattern; else length">
+                        </ng-container>
+
+                        <ng-template #pattern>
+                          <span>
+                            Only number are allowed
+                          </span>
+                        </ng-template>
+                        <ng-template #length>
+                          <span
+                            *ngIf="employee.controls['contact_no'].touched && employee.controls['contact_no'].errors?.['minlength']">
+                            10 digit is required
+                          </span>
+                          <span *ngIf="employee.controls['contact_no'].errors?.['maxlength']">
+                            Only 10 digit are allowed
+                          </span>
+                        </ng-template>
+
+                      </span>
+                      <span *ngIf="ExistsContactNo" class="text-danger">
+                        {{ExistsContactNo}} is already exists
+                      </span>
+                      <input type="text" class="form-control" placeholder="Enter Phone Number"
+                        formControlName="contact_no" />
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <label class="labels">Address Line 1</label>
+                      <span
+                      *ngIf="employee.controls['address'].invalid && (employee.controls['address'].dirty || employee.controls['address'].touched)"
+                      class="text-danger">
+                      <span *ngIf="employee.controls['address'].errors?.['required']">
+                        Address is required
+                      </span>
+                      <span *ngIf="employee.controls['address'].errors?.['pattern']">
+                        Only , . / + - symbol are allowed
+                      </span>
+                    </span>
+                      <input type="text" class="form-control" placeholder="Enter Address Line 1"
+                        formControlName="address" />
+                    </div>
+                  </div>
+                  <!-- <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Pin code</label>
+                      <input type="text" class="form-control" placeholder="Pin Code">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="labels">State</label>
+                      <input type="text" class="form-control" placeholder="state">
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <!-- personal setting -->
+
+              <!-- professional setting -->
+              <div class="col-md-5">
+                <div class="p-0 py-0">
+                  <div class="d-flex justify-content-between align-items-center Professional">
+                    <h4 class="text-right m-0 p-0">Professional Settings</h4>
+                  </div>
+                  <hr>
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <label class="labels">Designation</label>
+                      <span
+                        *ngIf="employee.controls['designation'].invalid && (employee.controls['designation'].dirty || employee.controls['designation'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['designation'].errors?.['required']">
+                          Designation is required
+                        </span>
+                        <span *ngIf="employee.controls['designation'].errors?.['pattern']">
+                          Only letter are allowed.
+                        </span>
+                        <span *ngIf="employee.controls['designation'].errors?.['maxlength']">
+                          Only 25 letter are allowed.
+                        </span>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Designation" formControlName="designation" />
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Hire Date</label>
+                      <span
+                        *ngIf="employee.controls['doj'].invalid && (employee.controls['doj'].dirty || employee.controls['doj'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['doj'].errors?.['required']">
+                          Hire Date is required
+                        </span>
+                      </span>
+                      <input type="date" class="form-control" placeholder="Date Of Join" formControlName="doj" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="labels">Resign Date</label>
+                      <input type="date" class="form-control" placeholder="Date Of Resign">
+                    </div>
+                  </div>
+                  <!-- <div class="row mt-2">
+                      
+                    </div> -->
+                </div>
+              </div>
+              <!-- professional setting -->
+
+            </div>
+
+          </div>
+          <!-- personal Details -->
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label> Bank </ng-template>
+          <!-- bank Details -->
+          <div class="container rounded bg-white mt-3 mb-0">
+            <div class="row mt-0">
+
+              <div class="col-md-12">
+
+                <div class="p-0 py-0">
+
+                  <div class="d-flex justify-content-between align-items-center mb-0">
+                    <h4 class="text-right m-0 p-0">Bank Settings</h4>
+                  </div>
+                  <hr>
+
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Bank Name</label>
+                      <span
+                        *ngIf="employee.controls['bank_name'].invalid && (employee.controls['bank_name'].dirty || employee.controls['bank_name'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['bank_name'].errors?.['required']">
+                          Bank Name is required
+                        </span>
+
+                        <ng-container
+                          *ngIf="employee.controls['bank_name'].errors?.['pattern']; then pattern; else length">
+                        </ng-container>
+
+                        <ng-template #pattern>
+                          <span>
+                            Only letter are allowed.
+                          </span>
+                        </ng-template>
+                        <ng-template #length>
+                          <span *ngIf="employee.controls['bank_name'].errors?.['maxlength']">
+                            Only 35 letter are allowed.
+                          </span>
+                        </ng-template>
+
+                      </span>
+                      <input type="text" class="form-control" placeholder="Bank Name" formControlName="bank_name" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="labels">Branch Name</label>
+                      <span
+                        *ngIf="employee.controls['branch'].invalid && (employee.controls['branch'].dirty || employee.controls['branch'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['branch'].errors?.['required']">
+                          Branch Name is required
+                        </span>
+
+                        <ng-container
+                          *ngIf="employee.controls['branch'].errors?.['pattern']; then pattern; else length">
+                        </ng-container>
+
+                        <ng-template #pattern>
+                          <span>
+                            Only letter are allowed.
+                          </span>
+                        </ng-template>
+                        <ng-template #length>
+                          <span *ngIf="employee.controls['branch'].errors?.['maxlength']">
+                            Only 35 letter are allowed.
+                          </span>
+                        </ng-template>
+
+                      </span>
+                      <input type="text" class="form-control" placeholder="Branch Name" formControlName="branch" />
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Account Number</label>
+                      <span
+                        *ngIf="employee.controls['account_no'].invalid && (employee.controls['account_no'].dirty || employee.controls['account_no'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['account_no'].errors?.['required']">
+                          account_no Name is required
+                        </span>
+                        <span *ngIf="employee.controls['account_no'].errors?.['pattern']">
+                          Only number are allowed.
+                        </span>
+                      </span>
+                      <span *ngIf="ExistsA_CNo" class="text-danger">
+                        {{ExistsA_CNo}} is already exists
+                      </span>
+                      <input type="text" class="form-control" placeholder="Account Number"
+                        formControlName="account_no" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="labels">IFSC Code</label>
+                      <span
+                        *ngIf="employee.controls['ifsc_code'].invalid && (employee.controls['ifsc_code'].dirty || employee.controls['ifsc_code'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['ifsc_code'].errors?.['required']">
+                          IFSC_code is required
+                        </span>
+                        <ng-container
+                          *ngIf="employee.controls['ifsc_code'].errors?.['pattern']; then pattern; else length">
+                        </ng-container>
+
+                        <ng-template #pattern>
+                          <span>
+                            Only number and letter are allowed
+                          </span>
+                        </ng-template>
+                        <ng-template #length>
+                          <span
+                            *ngIf="employee.controls['ifsc_code'].touched && employee.controls['ifsc_code'].errors?.['minlength']">
+                            11 values is required
+                          </span>
+                          <span *ngIf="employee.controls['ifsc_code'].errors?.['maxlength']">
+                            Only 11 values are allowed
+                          </span>
+                        </ng-template>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Ifsc Code" formControlName="ifsc_code" />
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <label class="labels">Pan Card Number</label>
+                      <span
+                        *ngIf="employee.controls['pan_no'].invalid && (employee.controls['pan_no'].dirty || employee.controls['pan_no'].touched)"
+                        class="text-danger">
+                        <span *ngIf="employee.controls['pan_no'].errors?.['required']">
+                          Pan Number is required
+                        </span>
+                        <ng-container
+                          *ngIf="employee.controls['pan_no'].errors?.['pattern']; then pattern; else length">
+                        </ng-container>
+
+                        <ng-template #pattern>
+                          <span>
+                            Only letter and number are allowed
+                          </span>
+                        </ng-template>
+                        <ng-template #length>
+                          <span
+                            *ngIf="employee.controls['pan_no'].touched && employee.controls['pan_no'].errors?.['minlength']">
+                            10 values is required
+                          </span>
+                          <span *ngIf="employee.controls['pan_no'].errors?.['maxlength']">
+                            Only 10 values are allowed
+                          </span>
+                        </ng-template>
+                      </span>
+                      <span *ngIf="ExistsPanNo" class="text-danger">
+                        {{ExistsPanNo}} is already exists
+                      </span>
+                      <input type="text" class="form-control" placeholder="Pan Card Number" formControlName="pan_no" />
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- bank Details -->
+        </mat-tab>
+      </form>
+      <mat-tab>
+        <ng-template mat-tab-label> Salary </ng-template>
+        <!-- salary details -->
+        <div class="container rounded bg-white mt-3 mb-0">
+
+          <!-- basic salary -->
+          <div class="row align-items-center mt-2 mb-2">
+            <div class="col-md-4 text-end">
+              <label for="" class="col-form-label">Basic Salary</label>
+              <span *ngIf="basicSalaryInput.invalid && (basicSalaryInput.dirty || basicSalaryInput.touched)"
+                class="text-danger">
+                <span *ngIf="basicSalaryInput.errors?.['required']">Basic Salary is required</span>
+              </span>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" [(ngModel)]="basic_salary"
+                (input)="calculateByBasic_salary(basic_salary)"  #basicSalaryInput="ngModel" required/>
+            </div>
+
+
+          </div>
+
+
+          <div class="row mb-3 border-top">
+
+            <!-- earning amount -->
+            <div class="col-md-6 border-end">
+              <div class="p-0 py-0">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <h4 class="text-right m-0 p-0">Earnings Amounts</h4>
+                </div>
+                <hr>
+                <!-- notepade -->
+                <ng-container *ngFor="let s of SalaryHead">
+                  <ng-container *ngIf="s.category === 'Earning'">
+                    <div class="row g-3 align-items-center mt-2">
+                      <div class="col-md-6">
+                        <label for="" class="col-form-label">{{s.caption}}</label>
+                      </div>
+
+                      <!-- ngModale -->
+                      <div class="col-md-2">
+                        <input type="number" class="form-control" [(ngModel)]="s.percentage" [readonly]="false"
+                          (input)="calculateSalaryPercentage(s)" />
+                      </div>
+                      <div class="col-md-4">
+                        <input type="number" class="form-control" [(ngModel)]="s.amount" (input)="calculateSalaryAmount(s)" />
+                      </div>
+                      <!-- ngModale -->
+
+                    </div>
+                  </ng-container>
+                </ng-container>
+
+              </div>
+            </div>
+            <!-- earning amount -->
+
+            <!-- deduction amount -->
+            <div class="col-md-6">
+              <div class="p-0 py-0">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <h4 class="text-right m-0 p-0">Deductions Amounts</h4>
+                </div>
+                <hr>
+                <!-- notepade -->
+                <ng-container *ngFor="let s of SalaryHead">
+                  <ng-container *ngIf="s.category === 'Deduction'">
+                    <div class="row g-3 align-items-center mt-2">
+                      <div class="col-md-6">
+                        <label for="" class="col-form-label">{{s.caption}}</label>
+                      </div>
+                      <!-- ngModel -->
+                      <div class="col-md-2">
+                        <input type="number" class="form-control" [(ngModel)]="s.percentage" [readonly]="false"
+                          (input)="calculateSalaryPercentage(s)" />
+                      </div>
+                      <div class="col-md-4">
+                        <input type="number" class="form-control" [(ngModel)]="s.amount" (input)="calculateSalaryAmount(s)" />
+                      </div>
+                      <!-- ngModel -->
+                    </div>
+                  </ng-container>
+                </ng-container>
+
+              </div>
+            </div>
+            <!-- deduction amount -->
+
+          </div>
+
+
+          <div class="row m-0 border-top">
+            <div class="col-md-6">
+              <div class="row  align-items-center mt-1 mb-1">
+                <div class="col-md-8 text-end">
+                  <label for="" class="col-form-label">Gross Salary</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="number" class="form-control" [(ngModel)]="gross_salary" [readonly]="true" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row align-items-center mt-1 mb-1">
+                <div class="col-md-8 text-end">
+                  <label for="" class="col-form-label">Total Deduction</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="number" class="form-control" [(ngModel)]="total_deduction" [readonly]="true" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-0 mb-0 border-top">
+            <div class="col-md-6">
+
+            </div>
+
+            <div class="col-md-6">
+              <div class="row g-3 align-items-center mt-2">
+                <div class="col-md-8 text-end">
+                  <label for="" class="col-form-label">Net Salary</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="number" class="form-control" [(ngModel)]="net_salary" [readonly]="true" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- salary details -->
+      </mat-tab>
+    </mat-tab-group>
+    <!-- profile-head -->
+
+    <!-- save button  and cancel-->
+    <div class="row mt-2 mb-2">
+      <div class="" style="text-align:center;">
+        <button class="btn btn-default" (click)="submit()"> Save </button>
+      </div>
+    </div>
+
+  </div>
+  <!-- model body -->
+
+
+</div>

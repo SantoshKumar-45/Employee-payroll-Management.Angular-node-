@@ -1,0 +1,57 @@
+<div class="container mt-4 mb-4 container">
+    <div class="table_header border-bottom">
+        <h4 class="header">Disbursement Report</h4>
+        <button mat-raised-button color="primary" class="back_button" *ngIf="backButton == true"
+            (click)="backtoList()"><i class="material-icons" style="border-right: 0;">arrow_back</i>
+            <span>Back</span></button>
+    </div>
+    <!-- date list -->
+    <div class="row mt-2" *ngIf="DisbursementTitleList == true">
+        <div class="col-2">
+            <ul class="attendance-list">
+                <ng-container *ngFor="let t of Title">
+                    <li class="list" (click)="showDisbursementReportbyTitle(t.title)">
+                        <span>{{t.title}}</span>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="disbursementReportList == true">
+    
+    <div class="exportbtn">
+        <a mat-raised-button color="primary" class="add-button"
+            href="http://localhost:5500/api/disbursementReport/export/title">
+            <i class="material-icons">file_download</i>
+            <span>Export</span>
+        </a>
+        
+        <a mat-raised-button color="primary" href="http://localhost:5500/api/disbursementReport/download/pdf">
+            <i class="material-icons">file_download</i>
+            <span>Pdf</span>
+        </a>
+    </div>
+
+    <!--  Disbursement table employee  -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name of the employee</th>
+                <th scope="col">Account No</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empReport of tempDisbursementReport; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{empReport.first_name}}&nbsp;{{empReport.last_name}}</td>
+                <td>{{empReport.account_no}}</td>
+                <td>{{empReport.net_salary | currency:'INR'}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Disbursement Report</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <style>
+        .container {
+            font-family: "Trirong", serif;
+            margin-top: 3%;
+        }
+
+        .Reporthead {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .letter_header {
+            margin-left: 4rem;
+        }
+
+        .letter-container {
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 0px;
+        }
+
+        .manager_header {
+            color: black;
+        }
+
+        h1,
+        h4,
+        h5 {
+            text-align: center;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+
+            text-align: right;
+        }
+
+        .signature {
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            display: inline-block;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="letter-container">
+            <h1>jai Infoway pvt Ltd</h1>
+            <h4>Piska More</h4>
+            <h5>Ranchi</h5>
+            <div class="Reporthead">Disbursement Report for {{emp.title}}</div>
+            <hr>
+            <div class="bank-info">
+                <p class="manager_header">The Manager</p>
+                <p>ABC Bank</p>
+                <p>Branch</p>
+                <p>123 Main Street, City, Country</p>
+                <p>Dear Sir/Madam,</p>
+                <p class="letter_header">Please make the payroll transfer from the above account number to the
+                    below-mentioned account numbers towards employee Salaries:</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name of the Employee</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{disbursementData}}
+            </tbody>
+        </table>
+        <div class="signature-section">
+            <strong>
+                <p class="manager_header">jai Infoway pvt ltd</p>
+            </strong>
+            <p>Sincerely,</p>
+            <div class="signature">Authorized Signatory</div>
+        </div>
+    </div>
+</body>
+
+</html>

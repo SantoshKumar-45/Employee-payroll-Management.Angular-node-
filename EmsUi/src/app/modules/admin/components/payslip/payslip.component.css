@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* list */
+.listcontainer {
+  padding: 13px;
+  background-color: #fff;
+  width: 98%;
+}
+
+.add-button i {
+  border-right: 1px solid #fff;
+  margin-right: 8px;
+  padding-right: 8px;
+}
+
+.table_header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header {
+  flex: 1;
+  margin: 0;
+  height: 100%;
+  line-height: 50px;
+  font-size: 22px;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+
+/* attendance list */
+
+.attendance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list{
+padding: 10px;
+border-bottom: 1px solid #ccc;
+font-size: 16px;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+cursor: pointer;
+}
+
+.list:hover {
+background-color: #f2f2f2;
+color: #3f51b5;
+}
+
+.table-container{
+  overflow: auto;
+  margin-top: 1%;
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.tabl_header {
+  background-color: #3f51b5;
+  color: white;
+  border-bottom: 1px solid black;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  white-space: normal;
+  word-break: normal;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* for employee payslip */
+.container {
+    background-color: #fff;
+    width: 95%;
+  
+    font-family: 'Poppins', sans-serif;
+   
+
+}
+.icon {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.small-icon {
+  font-size: 14px; /* Adjust the font size as needed */
+  width: 14px; /* Adjust the width as needed */
+  height: 14px; /* Adjust the height as needed */
+}

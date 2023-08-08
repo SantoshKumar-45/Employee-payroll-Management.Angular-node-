@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Payslip</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <style>
+        body {
+            font-size: 14px;
+        }
+
+        .container {
+            margin-top: 5em;
+            margin-bottom: 5em;
+            font-family: "Trirong", serif;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .lh-1 {
+            line-height: 1;
+        }
+
+        .mb-2 {
+            margin-bottom: 2em;
+        }
+
+        .col-md-6 {
+            flex-basis: 50%;
+        }
+
+        .ms-3 {
+            margin-left: 1em;
+        }
+
+        .mt-4 {
+            margin-top: 4em;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .bg-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 0.5em;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .border-top {
+            border-top: 1px solid #ddd;
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.33%;
+            margin-top: 1em;
+        }
+
+        .border {
+            border: 1px solid #ddd;
+            flex: 0 0 66.67%;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .mt-1 {
+            margin-top: 1em;
+        }
+
+        .justify-content-end {
+            margin-top: 25px;
+            float: right;
+            justify-content: flex-end;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex-basis: 50%;
+        }
+
+        .data-row {
+            margin-bottom: 1em;
+        }
+
+        .data-label {
+            font-weight: bold;
+        }
+
+        .mt-4 {
+            margin-top: 4em;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .bg-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 0.5em;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .border-top {
+            border-top: 1px solid #ddd;
+        }
+
+        .border {
+            border: 1px solid #ddd;
+            padding: 1em;
+        }
+
+        .d-flex {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .main_header {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        .left_header {
+            float: left;
+        }
+
+        .right_header {
+            float: right;
+        }
+
+
+        .Sign-text {
+            margin-top: 50px;
+            float: right;
+        }
+
+        .signature {
+            font-size: 18px;
+            font-style: bold;
+        }
+
+        .auth_signature {
+            font-size: 16px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center lh-1 mb-2">
+            <h1 class="fw-bold">Payslip</h1>
+            <span class="fw-normal">Payment Slip For The Month Of {{empl.title}}</span>
+            <hr>
+        </div>
+        <div class="main_header">
+            <div class="left_header">
+                <div>
+                    <span class="fw-bolder">Employee Name</span>
+                    <small class="ms-3">{{empl.first_name}} &nbsp;{{empl.last_name}}</small>
+                </div>
+
+                <div>
+                    <span class="fw-bolder">Designation</span>
+                    <small class="ms-3">{{empl.designation}}</small>
+                </div>
+
+            </div>
+            <div class="right_header">
+                <div class="col-md-6">
+                    <span class="fw-bolder">Date of Joining</span>
+                    <small class="ms-3">{{empl.doj}}</small>
+                </div>
+                <div>
+                    <span class="fw-bolder">Working Days</span>
+                    <small class="ms-3">{{empl.working_days}}</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="mt-4 table">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">Earnings</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Deductions</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Basic salary</th>
+
+                <td>{{empl.basic_salary}}</td>
+                <td>TDS</td>
+                <td>{{empl.tds}}</td>
+            </tr>
+            <tr>
+                <th scope="row">DA</th>
+                <td>{{empl.da}}</td>
+                <td>PF</td>
+                <td>{{empl.pf}}</td>
+            </tr>
+            <tr>
+                <th scope="row">TA</th>
+                <td>{{empl.ta}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">HRA</th>
+                <td>{{empl.hra}}</td>
+                <td></td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>00</td>
+                <td></td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>00</td>
+                <td></td>
+                <td>0.00</td>
+            </tr>
+            <tr class="border-top">
+                <th scope="row">Gross Salary</th>
+                <td>{{empl.gross_salary}}</td>
+                <td>Total Deductions</td>
+                <td>{{empl.total_deduction}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <br>
+            <span class="fw-bold">Net Pay: {{empl.net_salary}}</span>
+        </div>
+        <div class="border col-md-8">
+            <div class="d-flex flex-column">
+                <span>In Words :</span>
+                <span> {{empl.salaryWords}} </span>
+            </div>
+        </div>
+    </div>
+    <div class="Sign-text">
+        <div class="signature">Jai Infoway Pvt Ltd</div>
+        <hr>
+        <div class="auth_signature">Authorized Signatory</div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* list */
+.container {
+  padding: 13px;
+  background-color: #fff;
+  width: 98%;
+}
+
+.add-button i {
+  border-right: 1px solid #fff;
+  margin-right: 8px;
+  padding-right: 8px;
+}
+
+.exportbtn{
+  display: flex;
+  justify-content:end;
+  align-items: center;
+}
+
+.exportbtn .download_btn{
+  margin:0px 0px 5px 0px;
+}
+
+.table_header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header {
+  flex: 1;
+  margin: 0;
+  height: 100%;
+  line-height: 50px;
+  font-size: 22px;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+
+/* attendance list */
+
+.attendance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list{
+padding: 10px;
+border-bottom: 1px solid #ccc;
+font-size: 16px;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+cursor: pointer;
+}
+
+.list:hover {
+background-color: #f2f2f2;
+color: #3f51b5;
+}
+
+.table-container{
+  overflow: auto;
+  margin-top: 1%;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.table tbody td {
+  background-color: none;
+}
+
+th {
+  background-color: #3f51b5;
+  color: white;
+  border-bottom: 1px solid white;
+  border-right: 1px solid rgba(197, 143, 143, 0.668);
+  padding-top: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+  padding: 15px;
+  white-space: normal;
+  word-break: normal;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+tr p {
+  text-align: center;
+}

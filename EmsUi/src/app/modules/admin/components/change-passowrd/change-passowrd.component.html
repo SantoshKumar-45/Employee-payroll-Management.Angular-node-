@@ -1,0 +1,74 @@
+
+<div class="mainDiv">
+    <div class="cardStyle">
+        <img src="" id="signupLogo" />
+        <h2 class="formTitle">
+            Change Password
+        </h2>
+        <form [formGroup]="passwordUpdateForm">
+            <div class="inputDiv">
+                <label class="inputLabel" for="password">Old Password</label>
+                <span *ngIf="oldPassword && oldPassword.invalid && oldPassword.touched" class="text-danger">
+                    <span *ngIf="oldPassword.errors?.required">
+                        required!
+                    </span>
+                    <span *ngIf="oldPassword.errors?.minlength">
+                        min 5 digits are required.
+                    </span>
+                    <span *ngIf="oldPassword.errors?.maxlength">
+                        Max 8 digits are required.
+                    </span>
+                </span>
+                <input type="password" id="oldpassword" formControlName="oldpassword" name="password">
+            </div>
+
+            <div class="inputDiv">
+                <label class="inputLabel" for="password">New Password</label>
+                <span *ngIf="password && password.invalid &&  password.touched" class="text-danger">
+                    <span *ngIf="password.errors?.required">
+                        required!
+                    </span>
+                    <span *ngIf="password.errors?.minlength">
+                        min 5 digits are required.
+                    </span>
+                    <span *ngIf="password.errors?.maxlength">
+                        Only 8 digits are allowed.
+                    </span>
+                </span>
+                <input type="password" id="password" formControlName="password" name="password">
+            </div>
+
+
+            <div class="inputDiv">
+                <label class="inputLabel" for="confirmPassword">Confirm Password</label>
+                <span *ngIf="newPassword && newPassword.invalid &&  newPassword.touched" class="text-danger">
+                    <span *ngIf="newPassword.errors?.required">
+                        required !
+                    </span>
+                    <span *ngIf="newPassword.errors?.['minlength']">
+                        min 5 digit are required
+                    </span>
+                    <span *ngIf="newPassword.errors?.['maxlength']">
+                        max 9 digit are required.
+                    </span>
+                    <!-- </span> -->
+                    <small *ngIf="status == true" class="text-success">Passwords Match !</small>
+                    <small class="text-danger"
+                        *ngIf="status == false ">Passwords don't match !</small>
+                </span>
+                <input [type]="passwordVisible ? 'text' : 'password'" id="newPassword" (input)="comparePassword()"
+                    formControlName="newPassword" name="newPassword">
+                <mat-icon class="material-symbols-outlined" (click)="togglePasswordVisibility()">
+                    {{ passwordVisible ? 'visibility' : 'visibility_off' }}
+                </mat-icon>
+            </div>
+
+            <div class="buttonWrapper">    
+                <!-- [disabled]="!passwordUpdateForm.valid"    -->
+                <button type="submit" id="submitButton"    (click)="updatePassword()" class="submitButton">
+                    <span>Continue</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

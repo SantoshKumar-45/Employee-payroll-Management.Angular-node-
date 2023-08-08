@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="table-wrapper border">
+
+    <div class="table-title">
+      <div class="table_header">
+
+        <h4 class="header">EMPLOYEE</h4>
+
+        <mat-form-field class="dropdown">
+          <select #status (input)="getEmpByStatus(status.value)" matNativeControl required>
+            <option value="active">Active</option>
+                <option value="all">All</option>
+                <option value="unactive">UnActive</option>
+          </select>
+        </mat-form-field>
+
+        <mat-form-field class="search-bar">
+          <input matInput #input (input)="searchname(input.value)" placeholder="Serach by name">
+        </mat-form-field>
+
+        <!-- routerLink='../empAdd' -->
+        <button mat-raised-button color="primary" class="add-button"  [routerLink]="['../empAdd']"><i
+          class="material-icons">&#xE147;</i>
+        <span>Employee</span></button>
+        
+      </div>
+    </div>
+
+    <div class="tablebody">
+      <table class="table  table-hover">
+        <thead>
+          <tr>
+            <th>SNO</th>
+            <th>NAME</th>
+            <th>DESIGNATION</th>
+            <th>ADDRESS</th>
+            <th>PHONE</th>
+            <th>DOB</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let emp of filterEmp;let i = index">
+          
+          <tr [ngClass]="emp.active===true ? 'green' : 'red'">
+            <td>{{i+1}}</td>
+            <td><a [routerLink]="['../empEdit',emp.id]" style="text-decoration: none;">{{emp.first_name}}
+                {{emp.last_name}}</a>
+              <span class="block">{{emp.email}}</span>
+            </td>
+            <td>{{emp.designation}}</td>
+            <td>{{emp.address}}</td>
+            <td>{{emp.contact_no}}</td>
+            <td>{{emp.dob | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>

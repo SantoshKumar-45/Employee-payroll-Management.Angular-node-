@@ -1,0 +1,58 @@
+<div class="table-container">
+    <h1 class="headSalary text-center mx-5">Salary Head</h1>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="bg">Caption</th>
+                    <th class="bg">Type</th>
+                    <th class="bg">Value</th>
+                    <th class="bg">Category</th>
+                    <th class="bg"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of headArray ; let i = index">
+                    <td>
+                        <input type="text" name="caption{{i}}" [(ngModel)]="data.caption" class="form-control"
+                            placeholder="">
+                    </td>
+                    <td>
+                        <select class="form-control"  name="type{{i}}" [(ngModel)]="data.type" placeholder="Select type">
+                            <option value="0">Select type</option>
+                            <option value="%">%</option>
+                            <option value="Amount">Amount</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <input type="text" class="form-control" name="value{{i}}" [(ngModel)]="data.value"
+                            placeholder="">
+                    </td>
+                    <td>
+                        <select class="form-control" name="category{{i}}" [(ngModel)]="data.category"
+                            placeholder="Select category">
+                            <option value="0">Select Category</option>
+                            <option value="Earning">Earning</option>
+                            <option value="Deduction">Deduction</option>
+                        </select>
+                    </td>
+                    <td>
+                        <i class="fa fa-plus-square" (click)="addForms()"
+                            style="font-size:15px; color: #3f51b5;"></i>&nbsp;&nbsp;
+                        <i class="fa fa-minus-square" (click)="removeForms(i)" *ngIf="i!=0"
+                            style="font-size:15px; color: rgb(230, 16, 16) ;"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-4"><button type="button" (click)="setSalaryHead()" class="btn">Save</button>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+    </div>
+</div>

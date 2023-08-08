@@ -1,0 +1,48 @@
+<body>
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row main-content  text-center">
+            <div class="col-md-4 text-center ">
+                <span class="company__logo">
+                    <h2><span style="color: #fff;" class="fas fa-book-open"></span></h2>
+                </span>
+                <h4 class="company_title">
+                    <p>Employee</p>
+                    <p>Management</p>
+                    <p>System</p>
+                </h4>
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2>Log In</h2>
+                    </div>
+                    <form [formGroup]="loginForm">
+                        <div class="row">
+                            <div control="" class="form-group">
+                                <div class="row">
+                                    <input type="text" name="username" formControlName="username" class="form__input"
+                                        placeholder="Username"><span class="alert alert-danger"
+                                        *ngIf="username && username.invalid && username.touched"> * username is
+                                        required</span>
+                                </div>
+                                <div class="row">                                    
+                                    <input type="password" name="password" formControlName="password"
+                                        class="form__input" placeholder="Password"><span class="alert alert-danger"
+                                        *ngIf="password && password.invalid && password.touched"> * password is
+                                        required</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="submit" (click)="Adminlogin()" value="Submit" class="btn">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>Don't have an account? <a href="#">Register Here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

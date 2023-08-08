@@ -1,0 +1,86 @@
+<div class="container mt-4 mb-4 container">
+    <div class="table_header border-bottom">
+        <h4 class="header">Salary Sheet</h4>
+        <button mat-raised-button color="primary" class="add-button" *ngIf="backbtn ==true" (click)="backtoDateList()"><i
+                class="material-icons" style="border-right: 0;">arrow_back</i>
+            <span>Back</span></button>
+    </div>
+    <!-- date list -->
+    <div class="row mt-2" *ngIf="salarySheetList == true">
+        <div class="col-2">
+            <ul class="attendance-list">
+                <ng-container *ngFor="let t of Title;">
+                    <li class="list" (click)="salarySheet(t.title)">
+                        <span>{{t.title}}</span>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+    <!-- salary sheet table -->
+    <div class="table-container" *ngIf="salarySheetTable == true">
+        <div class="exportbtn">
+            <a mat-raised-button color="primary" class="download_btn"
+                href="http://localhost:5500/api/SalarySheet/download/export">
+                <i class="material-icons">file_download</i>
+                <span>Export</span>
+            </a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="0">#</th>
+                    <th colspan="3"></th>
+                    <th class="text-center" colspan="4">EARNINGS</th>
+                    <th colspan="0"></th>
+                    <th class="text-center" colspan="4">LEAVE</th>
+                    <th colspan="0"></th>
+                    <th class="text-center" colspan="3">DEDUCTION</th>
+                    <th colspan="0"></th>
+                </tr>
+                <tr>
+                    <th scope="col">SNO</th>
+                    <th scope="col">Name of employee</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Basic Salary</th>
+                    <th scope="col"> DA</th>
+                    <th scope="col"> TA</th>
+                    <th scope="col"> HRA</th>
+                    <th scope="col">Gross Salary</th>
+                    <th scope="col">Working Days</th>
+                    <th scope="col">PL</th>
+                    <th scope="col">SL</th>
+                    <th scope="col">LWP</th>
+                    <th scope="col">SPL</th>
+                    <th scope="col">Present</th>
+                    <th scope="col">TDS</th>
+                    <th scope="col">PF</th>
+                    <th scope="col">Total Deduction</th>
+                    <th scope="col">Net Salary</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let sheet of salarySheetData ; let i=index">
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{sheet.first_name}} {{sheet.last_name}}</td>
+                    <td>{{sheet.designation}}</td>
+                    <td>{{sheet.basic_salary}}</td>
+                    <td>{{sheet.da}}</td>
+                    <td>{{sheet.ta}}</td>
+                    <td>{{sheet.hra}}</td>
+                    <td>{{sheet.gross_salary}}</td>
+                    <td>{{sheet.working_days}}</td>
+                    <td>{{sheet.personal_leave}}</td>
+                    <td>{{sheet.sick_leave}}</td>
+                    <td>{{sheet.leavewithoutpay}}</td>
+                    <td>{{sheet.special_leave}}</td>
+                    <td>{{sheet.present_days}}</td>
+                    <td>{{sheet.tds}}</td>
+                    <td>{{sheet.pf}}</td>
+                    <td>{{sheet.total_deduction}}</td>
+                    <td>{{sheet.net_salary}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

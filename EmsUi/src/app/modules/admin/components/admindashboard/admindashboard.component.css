@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+
+.app-container {
+  height: 90%;
+  margin: 0px;
+}
+
+.app-sidenav {
+  width: 239px;
+}
+
+
+.app-sidenav-content {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.company_name {
+  font-family: 'Lobster', cursive;
+}
+.icon {
+  vertical-align: middle;
+  margin-right: 1px;
+}
+
+.text {
+  font-size: 18px; /* Adjust the font size to your desired value */
+  font-weight: normal; 
+  display: inline-block;
+  vertical-align: middle;/* Remove the bold styling */
+}
+
+
+
